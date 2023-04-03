@@ -1,0 +1,33 @@
+.pizzasWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title{
+    font-weight: 600;
+    font-size: 36px;
+    margin: 32px 0px;
+}
+  
+  .frequency {
+    font-weight: 500;
+    font-size: 24px;
+    margin: 20px 0px 20px 10px;
+  }
+  
+  .without_ping{
+    margin: 0 auto;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .ping_title{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+  }
+
+  .subtitle{
+    color: rgb(129, 128, 128);
+  }
