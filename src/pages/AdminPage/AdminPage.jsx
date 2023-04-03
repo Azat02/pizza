@@ -1,20 +1,15 @@
 import React from 'react'
 import PizzaCard from '../../components/pizzaCard/PizzaCard'
-import Slider from '../../components/slider/Slider'
-import css from './HomePage.module.css'
+import css from '../HomePage/HomePage.module.css'
 import { useState, useEffect } from 'react';
-import SecondSlider from '../../components/secondSlider/SecondSlider'
-import ComboCard from '../../components/comboCard/ComboCard';
 import base_url from '../../constants/api_const'
 import LoadingBar from 'react-top-loading-bar';
+import ComboCard from '../../components/comboCard/ComboCard';
 
-
-
-
-function HomePage() {
+function AdminPage() {
     const [pizza, setPizza] = useState([]);
     const [combo, setCombo] = useState([]);
-    const [progress, setProgress] = useState(0)
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         setProgress(30);
@@ -38,7 +33,6 @@ function HomePage() {
         .catch(error => console.error(error));
     }, []);
     
-   
   return (
     <div>
         <LoadingBar
@@ -46,25 +40,11 @@ function HomePage() {
             progress={progress}
             onLoaderFinished={() => setProgress(0)}
         />
-        <Slider/>
-        <div className="container">
-            <div className={css.frequency}>Часто заказывают</div>
-        </div>
-        <SecondSlider/>
-        <div className="container">
-            <div className={css.without_ping}>
-            <img src="https://dodopizza-a.akamaihd.net/site-static/dist/f30f1ab8cd7a7a54476d.svg" alt="without_ping" />
-            <div>
-                <div className={css.ping_title}>Без свинины</div>
-                <div className={css.subtitle}>Мы готовим из цыпленка и говядины</div>
-            </div>
-            </div>
-        </div>
         <section className='container'>
             <div className={css.title} id="pizza">Пицца</div>
             <div className={"pizzasWrapper"}>
                 {
-                    pizza.map((item) => (<PizzaCard key={item.id} {...item}/>))
+                    pizza.map((item) => (<PizzaCard key={item.id} {...item} isAdmin= {true}/>))
                 }
             </div>
         </section>
@@ -72,7 +52,7 @@ function HomePage() {
             <div className={css.title} id="combo">Комбо</div>
             <div className={"pizzasWrapper"}>
                 {
-                    combo.map((item) => (<ComboCard key={item.id} {...item}/>))
+                    combo.map((item) => (<ComboCard key={item.id} {...item} isAdmin={true}/>))
                 }
             </div>
         </section>
@@ -80,4 +60,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default AdminPage

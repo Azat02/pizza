@@ -8,3 +8,7 @@
   margin: 0 7%;
 }
 
+.pizzasWrapper{
+  display: flex;
+  flex-wrap: wrap;
+}

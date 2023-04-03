@@ -1,7 +1,18 @@
 import css from './pizzaCard.module.css'
 import Button from '../button/Button'
+import base_url from '../../constants/api_const';
 
-function PizzaCard({name, image, description, price, variant, title}) {
+function PizzaCard({id ,name, image, description, price, variant, title, isAdmin}) {
+  const handleDelete = () => {
+    const res = window.confirm("Вы действительно хотите удалить" + name + "?");
+    if (res) {
+      fetch(base_url + 'pizzas' + id, {
+        method: 'DELETE',
+      }).then(() => {
+        window.location.reload();
+      })
+    }
+  }
   return (
     <div className={css.wrapper}>
         <div className={css.imageWrapper}>
@@ -11,7 +22,12 @@ function PizzaCard({name, image, description, price, variant, title}) {
         <p className={css.description}>{description}</p>
         <div className={css.footer}>
             <div className={css.price}>от {price} сом</div>
-            <Button title={title} variant={variant}/>
+            {isAdmin ?(
+              <Button title={'Удалить'} variant={variant} onClick={handleDelete}/>
+            ) : (
+              <Button title={title} variant={variant}/>
+            )
+            }
         </div>
     </div>
   )
